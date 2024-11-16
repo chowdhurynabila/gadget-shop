@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Register = () => {
     
   
@@ -35,16 +37,26 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
+              
+            </div>
+            <div className="form-control">
               <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
+                <span className="label-text">Confirm Password</span>
               </label>
+              <input
+                type="password"
+                placeholder="password"
+                className="input input-bordered"
+                required
+              />
+              
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
             </div>
+            <p className="my-4 text-sm font-light">Already have an account? <Link to="/login" className="text-primary">Login</Link></p>
           </form>
+          
         </div>
       </div>
     </div>

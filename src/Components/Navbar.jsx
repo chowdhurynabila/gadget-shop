@@ -70,10 +70,10 @@ const Navbar = () => {
           <div className="navbar-end">
             <div className="flex gap-2 items-center">
               <Link to="/login">
-              <button className="btn bg-gray-400 text-black  border border-black ">login</button>
+              <button className="btn btn-primary btn-outline ">Login</button>
               </Link>
               <Link to="/register">
-              <button className="btn bg-black text-white border border-black ">Register</button>
+              <button className="btn btn-primary ">Register</button>
               </Link>
             </div>
 
