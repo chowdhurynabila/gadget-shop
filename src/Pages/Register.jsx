@@ -1,8 +1,18 @@
+/* eslint-disable no-unused-vars */
+
 import { Link } from "react-router-dom";
+import UseAuth from "../hooks/UseAuth";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
-    
-  
+  const { CreateUser } = UseAuth();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -24,8 +34,10 @@ const Register = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
-                required
+                {...register("email", { required: true })}
+                
               />
+              {errors.email && <p className=" text-red-600 text-sm font-light"> Email is required.</p>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -35,9 +47,13 @@ const Register = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                })}
               />
-              
+              {errors.password?.type === "required" && <p className=" text-red-600 text-sm font-light"> Password is required.</p>}
+              {errors.password?.type === "minLength" && <p className=" text-red-600 text-sm font-light"> Password must have at least 6 characters.</p>}
             </div>
             <div className="form-control">
               <label className="label">
@@ -49,14 +65,17 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
-              
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Register</button>
             </div>
-            <p className="my-4 text-sm font-light">Already have an account? <Link to="/login" className="text-primary">Login</Link></p>
+            <p className="my-4 text-sm font-light">
+              Already have an account?{" "}
+              <Link to="/login" className="text-primary">
+                Login
+              </Link>
+            </p>
           </form>
-          
         </div>
       </div>
     </div>
