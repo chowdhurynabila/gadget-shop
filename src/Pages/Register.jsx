@@ -14,7 +14,8 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) =>{
-      console.log(data);
+      // console.log(data);
+      CreateUser(data.email, data.password);
       
   }
 
