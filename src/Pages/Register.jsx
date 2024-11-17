@@ -13,6 +13,11 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
+  const onSubmit = (data) =>{
+      console.log(data);
+      
+  }
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse">
@@ -25,7 +30,8 @@ const Register = () => {
           </p>
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-          <form className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)} 
+          className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -63,11 +69,21 @@ const Register = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
-                required
+                {...register('confirmPassword',{
+                  required: true,
+                  validate: (value) =>{
+                    if(watch('password') != value){
+                      return "Your passwords do not match"
+                    }
+                  }
+                })}
               />
+              {errors.confirmPassword && (
+                <p className=" text-red-600 text-sm font-light"> Both passwords must match.</p>
+              )}
             </div>
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Register</button>
+              <button type="submit" className="btn btn-primary">Register</button>
             </div>
             <p className="my-4 text-sm font-light">
               Already have an account?{" "}
